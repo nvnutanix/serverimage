@@ -376,21 +376,6 @@ setTimeout(init, 200);
 
 
 
-/* =========================
-
-   LOCK
-
-========================= */
-
-
-
-document.getElementById("lockBtn").onclick = () => {
-
-    locked = !locked;
-
-    overlay.style.pointerEvents = locked ? "none" : "auto";
-
-};
 
 
 
