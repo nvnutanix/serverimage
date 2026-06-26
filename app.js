@@ -227,10 +227,7 @@ function render() {
 
         box.onclick = (e) => {
 
-            if (locked) return;
-
             e.stopPropagation();
-
 
 
             if (r.status === "Supported") r.status = "Not Supported";
@@ -264,9 +261,6 @@ function render() {
         box.oncontextmenu = (e) => {
 
             e.preventDefault();
-
-            if (locked) return;
-
 
 
             const input = prompt("Comment for " + r.component, r.comment || "");
