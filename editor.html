@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EDITOR</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="state.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="canvas">
+        <div id="wrap">
+            <img id="img" src="server_image.png">
+            <div id="overlay"></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+
+        <div class="title">EDITOR</div>
+
+        <select id="component">
+            <option>Chassis backplane</option>
+            <option>CPU</option>
+            <option>DIMMs</option>
+            <option>Storage Controller</option>
+            <option>Storage Drives</option>
+            <option>BOSS</option>
+            <option>NIC1</option>
+            <option>NIC2</option>
+            <option>LOM</option>
+            <option>GPU</option>
+        </select>
+
+        <button id="save">Download Template</button>
+
+    </div>
+
+</div>
+
+<script src="editor.js"></script>
+
+</body>
+</html>

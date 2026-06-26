@@ -1,0 +1,114 @@
+[
+  {
+    "component": "Chassis backplane",
+    "x": 0.14192708333333334,
+    "y": 0.1396484375,
+    "width": 0.09765625,
+    "height": 0.630859375,
+    "status": "Supported"
+  },
+  {
+    "component": "CPU",
+    "x": 0.4140625,
+    "y": 0.2314453125,
+    "width": 0.1171875,
+    "height": 0.201171875,
+    "status": "Supported"
+  },
+  {
+    "component": "CPU",
+    "x": 0.4153645833333333,
+    "y": 0.5361328125,
+    "width": 0.11588541666666667,
+    "height": 0.1904296875,
+    "status": "Supported"
+  },
+  {
+    "component": "DIMMs",
+    "x": 0.3658854166666667,
+    "y": 0.1845703125,
+    "width": 0.048828125,
+    "height": 0.2705078125,
+    "status": "Supported"
+  },
+  {
+    "component": "DIMMs",
+    "x": 0.5338541666666666,
+    "y": 0.1826171875,
+    "width": 0.057942708333333336,
+    "height": 0.2724609375,
+    "status": "Supported"
+  },
+  {
+    "component": "DIMMs",
+    "x": 0.3665364583333333,
+    "y": 0.5087890625,
+    "width": 0.048177083333333336,
+    "height": 0.2451171875,
+    "status": "Supported"
+  },
+  {
+    "component": "DIMMs",
+    "x": 0.5345052083333334,
+    "y": 0.5068359375,
+    "width": 0.053385416666666664,
+    "height": 0.25390625,
+    "status": "Supported"
+  },
+  {
+    "component": "Storage Controller",
+    "x": 0.5983072916666666,
+    "y": 0.2861328125,
+    "width": 0.08984375,
+    "height": 0.3984375,
+    "status": "Supported"
+  },
+  {
+    "component": "Storage Drives",
+    "x": 0.263671875,
+    "y": 0.1787109375,
+    "width": 0.07942708333333333,
+    "height": 0.283203125,
+    "status": "Supported"
+  },
+  {
+    "component": "Storage Drives",
+    "x": 0.259765625,
+    "y": 0.4716796875,
+    "width": 0.07877604166666667,
+    "height": 0.26953125,
+    "status": "Supported"
+  },
+  {
+    "component": "BOSS",
+    "x": 0.62109375,
+    "y": 0.166015625,
+    "width": 0.09244791666666667,
+    "height": 0.0947265625,
+    "status": "Supported"
+  },
+  {
+    "component": "NIC1",
+    "x": 0.7194010416666666,
+    "y": 0.240234375,
+    "width": 0.10026041666666667,
+    "height": 0.1201171875,
+    "status": "Supported"
+  },
+  {
+    "component": "NIC2",
+    "x": 0.7213541666666666,
+    "y": 0.423828125,
+    "width": 0.09309895833333333,
+    "height": 0.115234375,
+    "status": "Supported"
+  },
+  {
+    "component": "LOM",
+    "x": 0.7044270833333334,
+    "y": 0.685546875,
+    "width": 0.13997395833333334,
+    "height": 0.087890625,
+    "status": "Supported"
+  }
+]

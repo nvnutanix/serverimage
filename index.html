@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Server Validation Tool</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="canvas">
+        <div id="wrap">
+            <img id="img" src="server_image.png">
+            <div id="overlay"></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+
+        <div class="title">SERVER VALIDATION TOOL</div>
+
+        <div id="score">Compliance: 0%</div>
+
+        <select id="serverModel">
+            <option value="650">650</option>
+            <option value="660">660</option>
+            <option value="670">670</option>
+        </select>
+
+        <button id="lockBtn">Lock</button>
+        <input type="file" id="file">
+        <button id="exportPdf">Export PDF</button>
+        <button id="exportImage">Download Image</button>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
