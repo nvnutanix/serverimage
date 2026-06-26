@@ -8,7 +8,6 @@ const modelSelect = document.getElementById("serverModel");
 
 let regions = [];
 
-let locked = false;
 
 
 
