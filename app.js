@@ -406,7 +406,7 @@ document.getElementById("exportPdf").onclick = async () => {
 
 
 
-    const maxImgWidth = pageW - margin * 2;
+    const maxImgWidth = pageW * 0.70;
 
     let imgW = maxImgWidth;
 
@@ -440,7 +440,7 @@ document.getElementById("exportPdf").onclick = async () => {
 
 
 
-    y += imgH + 2;
+    y += imgH + 10;
 
 
 
@@ -496,7 +496,8 @@ document.getElementById("exportPdf").onclick = async () => {
 
         const lines = pdf.splitTextToSize(comment || "", col3 - 10);
 
-        const rowH = 16;
+        const lineHeight = 12;
+        const rowH = Math.max(16, lines.length * lineHeight + 6);
 
 
 
