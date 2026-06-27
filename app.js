@@ -414,7 +414,7 @@ document.getElementById("exportPdf").onclick = async () => {
 
 
 
-    const maxImgHeight = pageH * 0.64;
+    const maxImgHeight = pageH * 0.5;
 
 
 
