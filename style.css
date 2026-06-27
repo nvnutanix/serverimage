@@ -204,3 +204,63 @@ select, input, button {
 #serverModel:focus {
     border-color: #2563eb;
 }
+
+.legend {
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.legend-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.legend-instructions {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    color: rgba(255,255,255,0.9);
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.35);
+    display: inline-block;
+}
+
+.supported {
+    background: rgba(7,214,83,0.7);
+}
+
+.not-supported {
+    background: rgba(197,10,10,0.7);
+}
+
+.missing {
+    background: rgba(202,39,123,0.7);
+}
+
+.need-info {
+    background: rgba(214,236,13,0.7);
+}
+
+.unused {
+    background: rgba(235,102,8,0.7);
+}
