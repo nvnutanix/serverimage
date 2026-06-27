@@ -4,9 +4,29 @@ const img = document.getElementById("img");
 
 const modelSelect = document.getElementById("serverModel");
 
+const templates = {
+    template1: {
+        image: "server_image1.png",
+        json: "template1.json"
+    },
+    template2: {
+        image: "server_image2.png",
+        json: "template2.json"
+    },
+    template3: {
+        image: "server_image3.png",
+        json: "template3.json"
+    },
+    template4: {
+        image: "server_image4.png",
+        json: "template4.json"
+    }
+};
 
+let currentTemplate = templates.template1;
 
 let regions = [];
+
 
 
 
@@ -43,111 +63,21 @@ function syncSize() {
 
 function getColor(status) {
 
-    if (status === "Supported") return "rgba(34,197,94,0.25)";
+    if (status === "Supported") return "rgba(7, 214, 83, 0.4)";
 
-    if (status === "Not Supported") return "rgba(239,68,68,0.25)";
+    if (status === "Not Supported") return "rgba(197, 10, 10, 0.39)";
 
-    if (status === "Need Info") return "rgba(250,204,21,0.25)";
+    if (status === "Need Info") return "rgba(214, 236, 13, 0.36)";
 
-    if (status === "Missing") return "rgba(244,114,182,0.25)";
+    if (status === "Missing") return "rgba(202, 39, 123, 0.46)";
 
-    if (status === "To remain unused") return "rgba(249,115,22,0.25)";
+    if (status === "To remain unused") return "rgba(235, 102, 8, 0.38)";
 
     return "rgba(59,130,246,0.15)";
 
 }
 
 
-
-/* =========================
-
-   COMPLIANCE (START 100%)
-
-========================= */
-
-
-
-function computeCompliance() {
-
-
-
-    let score = 100;
-
-
-
-    for (const r of regions) {
-
-
-
-        switch (r.status) {
-
-
-
-            case "Supported":
-
-                break;
-
-
-
-            case "Need Info":
-
-                score -= 0;
-
-                break;
-
-
-
-            case "Missing":
-
-                score -= 25;
-
-                break;
-
-
-
-            case "Not Supported":
-
-                score -= 50;
-
-                break;
-
-
-
-            case "To remain unused":
-
-                score -= 0;
-
-                break;
-
-        }
-
-    }
-
-
-
-    if (score < 0) score = 0;
-
-    if (score > 100) score = 100;
-
-
-
-    return score;
-
-}
-
-
-
-function updateScore() {
-
-    const el = document.getElementById("score");
-
-    if (!el) return;
-
-
-
-    el.innerText = `Compliance: ${computeCompliance()}%`;
-
-}
 
 
 
@@ -227,7 +157,10 @@ function render() {
 
         box.onclick = (e) => {
 
+            
+
             e.stopPropagation();
+
 
 
             if (r.status === "Supported") r.status = "Not Supported";
@@ -261,6 +194,9 @@ function render() {
         box.oncontextmenu = (e) => {
 
             e.preventDefault();
+
+        
+
 
 
             const input = prompt("Comment for " + r.component, r.comment || "");
@@ -299,49 +235,62 @@ async function loadTemplate() {
 
     try {
 
-        const res = await fetch("template.json");
+        const res = await fetch(currentTemplate.json);
+
+        if (!res.ok) {
+            throw new Error(`Cannot load ${currentTemplate.json}`);
+        }
 
         const data = await res.json();
 
-
-
         regions = data.map(r => ({
-
             component: r.component,
-
             x: parseFloat(r.x),
-
             y: parseFloat(r.y),
-
             width: parseFloat(r.width),
-
             height: parseFloat(r.height),
-
             status: r.status || "Supported",
-
             comment: r.comment || ""
-
         }));
 
-
-
-        console.log("TEMPLATE LOADED:", regions.length);
-
-
+        console.log("TEMPLATE LOADED:", currentTemplate.json, regions.length);
 
         render();
 
-
-
     } catch (err) {
 
-        console.error("Template load failed", err);
+        console.error("Template load failed:", err);
 
     }
-
 }
 
+async function changeTemplate(templateKey) {
 
+    const template = templates[templateKey];
+
+    if (!template) return;
+
+    currentTemplate = template;
+
+    // highlight selected button
+    document.querySelectorAll(".template-btn").forEach(btn => {
+        btn.classList.remove("active-template");
+    });
+
+    document.getElementById(templateKey).classList.add("active-template");
+
+    // change image
+    img.src = template.image;
+
+    // wait image to load
+    await new Promise(resolve => {
+        img.onload = resolve;
+    });
+
+    syncSize();
+
+    await loadTemplate();
+}
 
 /* =========================
 
@@ -351,12 +300,19 @@ async function loadTemplate() {
 
 
 
-function init() {
+async function init() {
+
+    img.src = currentTemplate.image;
+
+    await new Promise(resolve => {
+        img.onload = resolve;
+    });
 
     syncSize();
 
-    loadTemplate();
+    document.getElementById("template1").classList.add("active-template");
 
+    await loadTemplate();
 }
 
 
@@ -368,8 +324,12 @@ window.addEventListener("resize", render);
 setTimeout(init, 200);
 
 
-
-
+function safeFileName(name) {
+    return (name || "Unknown")
+        .trim()
+        .replace(/\s+/g, "_")      // razmaci -> underscore
+        .replace(/[^a-zA-Z0-9_-]/g, ""); // ukloni specijalne karaktere
+}
 
 
 /* =========================
@@ -402,27 +362,19 @@ document.getElementById("exportPdf").onclick = async () => {
 
     /* HEADER */
 
-    const compliance = computeCompliance();
+    
 
 
 
-    pdf.setFontSize(16);
+    pdf.setFontSize(14);
 
     pdf.text(`Server model ${model} validation report`, 20, 25);
 
 
 
-    /* 🔥 NEW: compliance under title */
-
-    pdf.setFontSize(12);
-
-    pdf.text(`Compliance: ${compliance}%`, 20, 35);
-
-
-
     pdf.setFontSize(11);
 
-    pdf.text(`Generated: ${new Date().toLocaleString()}`, 20, 45);
+    pdf.text(`Generated: ${new Date().toLocaleString()}`, 20, 40);
 
 
 
@@ -462,7 +414,7 @@ document.getElementById("exportPdf").onclick = async () => {
 
 
 
-    const maxImgHeight = pageH * 0.50;
+    const maxImgHeight = pageH * 0.64;
 
 
 
@@ -480,7 +432,7 @@ document.getElementById("exportPdf").onclick = async () => {
 
 
 
-    let y = 50;
+    let y = 42;
 
 
 
@@ -488,7 +440,7 @@ document.getElementById("exportPdf").onclick = async () => {
 
 
 
-    y += imgH + 25;
+    y += imgH + 2;
 
 
 
@@ -524,11 +476,11 @@ document.getElementById("exportPdf").onclick = async () => {
 
         if (status === "Supported") return "#22c55e";
 
-        if (status === "Not Supported") return "#ef4444";
+        if (status === "Not Supported") return "#dd0808";
 
-        if (status === "Need Info") return "#facc15";
+        if (status === "Need Info") return "#eff315";
 
-        if (status === "Missing") return "#f472b6";
+        if (status === "Missing") return "#e22f8b";
 
         if (status === "To remain unused") return "#f97316";
 
@@ -704,7 +656,9 @@ document.getElementById("exportPdf").onclick = async () => {
 
 
 
-    pdf.save("server-validation-report.pdf");
+    const modelName = safeFileName(modelSelect.value);
+
+    pdf.save(`${modelName}_report.pdf`);
 
 };
 
@@ -738,8 +692,15 @@ document.getElementById("exportImage").onclick = async () => {
 
     link.href = canvas.toDataURL("image/png");
 
-    link.download = "server-validation-image.png";
+    const modelName = safeFileName(modelSelect.value);
+
+    link.download = `${modelName}.png`;
 
     link.click();
 
 };
+
+document.getElementById("template1").onclick = () => changeTemplate("template1");
+document.getElementById("template2").onclick = () => changeTemplate("template2");
+document.getElementById("template3").onclick = () => changeTemplate("template3");
+document.getElementById("template4").onclick = () => changeTemplate("template4");

@@ -27,14 +27,30 @@
 
         <div class="title">SERVER VALIDATION TOOL</div>
 
-        <div id="score">Compliance: 0%</div>
+        
 
-        <select id="serverModel">
-            <option value="650">650</option>
-            <option value="660">660</option>
-            <option value="670">670</option>
-        </select>
+        <div class="model-box">
+            <div class="model-label">Server Model</div>
+            <input id="serverModel" type="text" placeholder="Enter server model..." />
+        </div>
 
+        
+        <button id="template1" class="template-btn">
+            <small>Controller Backplane</small>
+        </button>
+
+        <button id="template2" class="template-btn">
+            <small>Controller Backplane + GPU</small>
+        </button>
+
+        <button id="template3" class="template-btn">
+            <small>No Controller Backplane</small>
+        </button>
+
+        <button id="template4" class="template-btn">
+            <small>No Controller Backplane + GPU</small>
+        </button>
+        
         <button id="exportPdf">Export PDF</button>
         <button id="exportImage">Download Image</button>
 

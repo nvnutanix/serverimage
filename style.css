@@ -13,10 +13,16 @@ body {
 
 /* LEFT */
 .canvas {
+
     flex: 1;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
+    overflow: auto;
 }
 
 #wrap {
@@ -66,8 +72,24 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-    overflow-y: auto;
-    max-height: 100vh;
+
+    width: 280px;
+
+    min-width: 280px;
+
+    max-width: 280px;
+
+    padding: 20px;
+
+    background: #102247;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    box-sizing: border-box;
 }
 
 .title {
@@ -97,8 +119,88 @@ button:hover {
 }
 
 select, input, button {
-    font-size: 15px;
+    font-size: 14px;
     padding: 10px;
     border-radius: 6px;
 }
 
+.template-btn {
+
+    width: 100%;
+    margin-top: 10px;
+
+    padding: 12px;
+
+    text-align: center;
+
+    background: #1d4ed8;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.template-btn small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    opacity: .85;
+}
+
+.template-btn:hover {
+
+    background: #2563eb;
+}
+
+.active-template {
+
+    background: #16a34a !important;
+}
+
+.active-template:hover {
+
+    background: #15803d !important;
+}
+
+.model-box {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.model-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+#serverModel {
+    padding: 6px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    outline: none;
+}
+
+#serverModel:focus {
+    border-color: #2563eb;
+}
